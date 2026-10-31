@@ -5,3 +5,83 @@
 select{font:inherit;color:var(--paper);background:#201c2a;border:1px solid #60546d;border-radius:5px;padding:.8rem;width:100%;margin-top:.5rem}select:focus-visible{outline:3px solid var(--amber);outline-offset:3px}a{color:var(--amber)}.rescue{border:1px solid #75617c;border-top:3px solid var(--amber);border-radius:16px;padding:28px;background:linear-gradient(125deg,#302637,#1c1925);margin-bottom:40px}.rescue h2{font-size:2.6rem;margin:.4rem 0}.plan-controls{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap}.plan-controls label{flex:1;min-width:160px}.plan-controls p{flex:2;min-width:200px;font-size:.8rem;margin-top:22px}.plan-totals{display:flex;gap:24px;flex-wrap:wrap;padding:20px 0;color:var(--amber)}.plan-list{padding:0;list-style:none;counter-reset:plan}.plan-list li{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0;border-top:1px solid #b4adc330;overflow-wrap:anywhere}.plan-list li div{min-width:0}.plan-list span,.plan-list small{display:block;color:var(--muted);line-height:1.6}.plan-list small{font-size:.8rem}.plan-list button{flex-shrink:0;color:var(--amber)}.plan-groups{display:flex;gap:20px;flex-wrap:wrap}.plan-groups details{flex:1;min-width:180px}.plan-groups summary{cursor:pointer;padding:.6rem 0}.assignment-overview{margin-bottom:40px}.assignment-card{display:flex;justify-content:space-between;gap:24px;background:#211d2b;border:1px solid #b4adc326;border-radius:10px;padding:24px;margin:16px 0;overflow-wrap:anywhere}.assignment-card>div:first-child{min-width:0}.assignment-card h3{margin-bottom:.5rem}.assignment-card p{margin:.6rem 0;font-size:.85rem}.assignment-card strong{font-size:.88rem;color:var(--amber)}.assignment-actions{display:flex;flex-direction:column;gap:10px;min-width:150px;align-self:center}progress{width:min(100%,360px);height:10px;accent-color:var(--amber)}.metadata-fields{border:1px solid #b4adc330;border-radius:8px;padding:20px;margin-bottom:24px}.metadata-fields>p{font-size:.8rem}.intro{min-height:240px;margin-bottom:24px}.intro h1{font-size:clamp(2.8rem,5vw,4rem)}.grave.completed{border-color:#789d87}.grave.completed .completion{color:#b8dfc4}.task-fields>p{font-size:.75rem;grid-column:1/-1}.rescue .section-head>.quiet{max-width:none}dialog{max-height:90dvh;overflow:auto}
 @media(max-width:700px){.rescue{padding:20px}.rescue .section-head{display:block}.plan-list li{align-items:flex-start;flex-direction:column;gap:10px}.plan-list button{width:100%}.assignment-card{flex-direction:column;padding:18px}.assignment-actions{align-self:stretch;flex-direction:row;flex-wrap:wrap}.assignment-actions button{flex:1}.plan-totals{gap:12px;font-size:.85rem}.metadata-fields{padding:14px}.task-grid{grid-template-columns:1fr}.intro{min-height:220px}.intro h1{font-size:3rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Dusk study: the landscape carries the atmosphere; the work stays still. */
+body{background:var(--ink)}
+.masthead{padding-top:22px;padding-bottom:22px}
+.wordmark{font-family:Georgia,'Times New Roman',serif;font-size:1.14rem;font-weight:400;letter-spacing:-.02em;line-height:1.1}
+.wordmark span{letter-spacing:.035em;margin-top:2px}
+.motion-toggle{font-size:.75rem;color:var(--muted);border-color:transparent;padding:.5rem}
+.motion-toggle[aria-pressed=true]::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);margin-right:7px;vertical-align:middle}
+.motion-toggle:disabled{opacity:1;cursor:default}
+main{padding-top:22px}
+.intro{grid-template-columns:1fr 1.1fr;min-height:0;padding:0;margin-bottom:20px;gap:24px}
+.intro h1{font-size:clamp(2rem,3.6vw,3.1rem);line-height:1.15;letter-spacing:-.035em;margin-bottom:12px}
+.intro p{font-size:.9rem;line-height:1.65;margin-bottom:0}
+.dusk-scene{display:block;width:100%;max-width:540px;height:auto;justify-self:end;overflow:hidden}
+.eyebrow{letter-spacing:.025em;font-weight:500;font-size:.76rem}
+.rescue{background:#25212f;border:1px solid #63536d;border-top:2px solid #c4a77d;border-radius:5px;padding:26px 28px;margin-bottom:36px}
+.rescue h2{font-size:2.15rem;margin:.35rem 0 0}
+.rescue .section-head{margin-bottom:22px}
+.plan-totals{border-top:1px solid #b4adc32b;border-bottom:1px solid #b4adc32b;padding:16px 0;margin-bottom:16px;font-variant-numeric:tabular-nums}
+.plan-totals strong{color:var(--paper);font-weight:550}
+.plan-controls p{margin-top:0;align-self:center}
+.plan-list strong{font-weight:550;line-height:1.5}
+.plan-groups{padding-top:8px}
+.assignment-card{border:0;border-bottom:1px solid #b4adc32b;border-radius:0;background:transparent;padding:24px 0;margin:0}
+.assignment-card h3{font-size:1.6rem}
+.assignment-actions button{font-size:.8rem}
+.task-progress{height:5px;width:min(100%,360px);background:#49404f;border-radius:3px;overflow:hidden;margin:16px 0}
+.task-progress span{display:block;width:100%;height:100%;background:#b7c7b6;transform-origin:left center}
+.grave{border-radius:34px 34px 5px 5px;background:#25212f;min-height:295px;border-color:#61536b}
+.grave.completed{opacity:1;background:#20232a}
+.grave-top{justify-content:flex-start;margin-bottom:20px}
+.badge,.assignment-name{text-transform:none;letter-spacing:0;font-size:.76rem}
+.grave h3{font-size:1.5rem}
+.empty{border:0;border-top:1px solid #b4adc32b;border-radius:0;background:transparent;padding:32px 12px}
+footer span:first-child{letter-spacing:0}
+button{transition:background 150ms ease,transform 120ms ease,border-color 150ms ease;touch-action:manipulation}
+button:not(:disabled):active{transform:translateY(1px)}
+[data-motion=on] .scene-cloud{animation:cloud-drift 36s ease-in-out infinite alternate}
+[data-motion=on] .scene-fog{animation:fog-drift 25s ease-in-out infinite alternate}
+[data-motion=on] .scene-lantern{animation:lantern-warmth 7s ease-in-out infinite}
+[data-motion=on] :is(.intake,.rescue,.review-layout,dialog[open]){animation:panel-arrive 280ms cubic-bezier(.2,.7,.2,1) both}
+[data-motion=on] .task-grid>.grave:nth-child(-n+4){animation:panel-arrive 320ms ease both}
+[data-motion=on] .task-grid>.grave:nth-child(2){animation-delay:35ms}
+[data-motion=on] .task-grid>.grave:nth-child(3){animation-delay:70ms}
+[data-motion=on] .task-grid>.grave:nth-child(4){animation-delay:105ms}
+[data-motion=on] .notice{animation:saved-feedback 650ms ease-out both}
+[data-motion=on] .task-progress span{transition:transform 450ms cubic-bezier(.2,.7,.2,1)}
+@keyframes cloud-drift{from{transform:translateX(-4px)}to{transform:translateX(9px)}}
+@keyframes fog-drift{from{transform:translateX(-8px)}to{transform:translateX(12px)}}
+@keyframes lantern-warmth{0%,100%{opacity:.85}35%{opacity:.98}58%{opacity:.88}76%{opacity:.95}}
+@keyframes panel-arrive{from{transform:translateY(7px)}to{transform:translateY(0)}}
+@keyframes saved-feedback{0%{border-color:#d3e8d1;transform:translateY(3px)}100%{border-color:#688e74;transform:translateY(0)}}
+[data-page-hidden=true] *,[data-page-hidden=true] *::before,[data-page-hidden=true] *::after{animation-play-state:paused!important}
+html:not([data-motion=on]) *,html:not([data-motion=on]) *::before,html:not([data-motion=on]) *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media(max-width:700px){
+ .masthead{padding:18px 20px;align-items:center;gap:14px;flex-wrap:wrap}
+ .wordmark{font-size:1rem}
+ nav{gap:10px;flex-wrap:wrap;justify-content:flex-end}
+ .motion-toggle{font-size:.72rem;padding:.5rem .25rem}
+ .nav{font-size:.72rem}
+ main{padding:20px 20px 48px}
+ .intro{display:grid;grid-template-columns:1fr;gap:0;position:static;margin-bottom:20px;min-height:0}
+ .intro>div:first-child{z-index:auto}
+ .intro h1{font-size:2.3rem;margin-bottom:8px}
+ .intro p br{display:none}
+ .dusk-scene{height:130px;width:100%;max-width:400px;justify-self:center;margin-top:-6px}
+ .rescue{padding:22px 18px}
+ .rescue h2{font-size:1.95rem}
+ .rescue .section-head>.quiet{display:none}
+ .plan-controls{gap:0 14px}
+ .plan-controls label{min-width:0;flex:1 1 120px}
+ .plan-controls p{min-width:0;flex-basis:100%;margin:0 0 16px}
+ .plan-totals{gap:9px 16px}
+ .assignment-card{padding:22px 0}
+ .section-head{flex-wrap:wrap}
+ .grave{border-radius:30px 30px 5px 5px}
+ footer{font-size:.7rem;line-height:1.5}
+}
+@media(max-width:370px){.masthead{padding:16px}.wordmark{font-size:.9rem}nav{gap:6px}.button.small{padding:.6rem}.motion-toggle{font-size:.68rem}.intro h1{font-size:2rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

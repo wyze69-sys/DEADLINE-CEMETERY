@@ -22,7 +22,14 @@ test('complete source-linked planning lifecycle, persisted edits, filters and de
  await expect(page.getByRole('button',{name:'Confirm & save assignment'})).toBeDisabled();
  await page.getByLabel('I checked the tasks and dates against the brief.').check();await page.getByRole('button',{name:'Confirm & save assignment'}).click();
  await expect(page.locator('.grave')).toHaveCount(3);await expect(page.locator('.grave.overdue')).toHaveCount(1);await expect(page.locator('img')).toHaveCount(0);
+ await page.route('**/api/assignments/*/tasks/*',route=>route.request().method()==='PATCH'?route.fulfill({status:500,contentType:'application/json',body:JSON.stringify({error:'Completion save failed — test error'})}):route.continue());
  await page.locator('.grave').filter({hasText:'Write the essay'}).getByRole('checkbox').click();
+ await expect(page.getByRole('alert')).toContainText('Completion save failed');
+ await expect(page.locator('.grave.completed')).toHaveCount(0);
+ await expect(page.getByRole('status')).not.toContainText('Task completed.');
+ await page.unroute('**/api/assignments/*/tasks/*');
+ await page.locator('.grave').filter({hasText:'Write the essay'}).getByRole('checkbox').click();
+ await expect(page.getByRole('status')).toContainText('Task completed.');
  await expect(page.locator('.grave.completed')).toHaveCount(1);await page.reload();await expect(page.locator('.grave.completed')).toHaveCount(1);
  await page.getByRole('button',{name:'No date',exact:false}).click();await expect(page.locator('.grave')).toHaveCount(2);
  await page.getByRole('button',{name:'All tasks',exact:false}).click();
