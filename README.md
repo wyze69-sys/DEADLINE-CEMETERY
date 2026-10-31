@@ -84,7 +84,7 @@ Node tests additionally exercise deadline inheritance/overrides, deterministic t
 
 ## Hackathon status
 
-This repository is a working local MVP, **not a completed hackathon submission**. No claim of genuine Kiro usage is made. Genuine Kiro usage evidence, a functional public deployment URL, and a YouTube demo under three minutes are still required. Publishing this source code does not deploy the application.
+This repository is a working local MVP, **not a completed hackathon submission**. Kiro CLI was used for a scheduling review and proposed regression test; see [the review and independent correction](docs/superpowers/kiro-review.md). Project steering lives in [`.kiro/`](.kiro/README.md). This does not establish that Kiro built the original application. A functional public deployment URL and a public YouTube demo under three minutes showing the app and actual Kiro use still require separate verification. Publishing this source code does not deploy the application.
 
 ## License
 

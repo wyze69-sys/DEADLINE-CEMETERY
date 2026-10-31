@@ -33,6 +33,21 @@ test('unknown differs from known zero; overdue, unconfirmed, horizon and UTC dat
  assert.equal(buildRecovery([assignment('a',[task('a',30)],'')],'2026-11-02',2,schedule()).assessments[0].status,'Needs information');
  for(const tz of ['UTC','Asia/Bangkok','America/Los_Angeles']){process.env.TZ=tz;const p=buildRecovery([a],'2026-12-31',2,schedule());assert.equal(p.end,'2027-01-01');assert.equal(buildRecovery([a],'2028-02-28',2,schedule()).end,'2028-02-29');}
 });
+test('blocked work keeps its capacity demand without being scheduled',()=>{
+ const assess=(blockedMinutes)=>buildRecovery([assignment('a',[
+  task('blocked',blockedMinutes,{blocked:true,blockedReason:'waiting',splittable:true,sessionMinutes:10}),
+  task('free',30)
+ ])],'2026-11-02',2,schedule(60,60));
+ for(const [minutes,shortage] of [[100,true],[60,false]]){
+  const result=assess(minutes),assessment=result.assessments[0];
+  assert.equal(assessment.status,'Does not fit');
+  assert.equal(assessment.remainingMinutes,minutes+30);
+  assert.equal(result.scheduledMinutes,30);
+  assert.ok(result.days.every(d=>d.scheduled.every(t=>t.id!=='blocked')));
+  assert.ok(assessment.warnings.some(w=>w.includes('Blocked work')));
+  assert.equal(assessment.warnings.some(w=>w.includes('insufficient minutes')),shortage);
+ }
+});
 test('real HTTP sessions validation, retry concurrency, stale replay, state transitions and persistence',async()=>{
  await mkdir(resolve('test-results'),{recursive:true});const dir=await mkdtemp(resolve('test-results/recovery-')),file=join(dir,'data.json');await writeFile(file,JSON.stringify({version:1,assignments:[assignment('a',[task('t',80,{estimatedMinutes:120})])]}));
  const server=createApp(new Store(file)).listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));
