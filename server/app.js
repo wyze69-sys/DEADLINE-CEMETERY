@@ -42,9 +42,11 @@ export function createApp(store,{production=false}={}) {
  app.use((req,res,next)=>{
   res.set({'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"});
   const host=req.hostname;
-  if(!['localhost','127.0.0.1','[::1]','::1'].includes(host))return next(fail('Local requests only.',403));
+  const publicHosts=(process.env.PUBLIC_HOSTS||'').split(',').map(s=>s.trim()).filter(Boolean);
+  if(!['localhost','127.0.0.1','[::1]','::1',...publicHosts].includes(host))return next(fail('Local requests only.',403));
   if(!['GET','HEAD','OPTIONS'].includes(req.method)) {
-    if(req.headers.origin && !['http://localhost','http://127.0.0.1'].some(base=>{try {const u=new URL(req.headers.origin);return u.origin===`${base}${u.port?':'+u.port:''}`&&u.port===String(req.socket.localPort);}catch{return false;}}))return next(fail('Cross-origin writes are not allowed.',403));
+    const sameOrigin=(()=>{try{return new URL(req.headers.origin).host===req.headers.host;}catch{return false;}})();
+    if(req.headers.origin && !sameOrigin && !['http://localhost','http://127.0.0.1'].some(base=>{try {const u=new URL(req.headers.origin);return u.origin===`${base}${u.port?':'+u.port:''}`&&u.port===String(req.socket.localPort);}catch{return false;}}))return next(fail('Cross-origin writes are not allowed.',403));
     if(req.method!=='DELETE'&&!req.is('application/json'))return next(fail('Use application/json.',415));
   }
   next();
